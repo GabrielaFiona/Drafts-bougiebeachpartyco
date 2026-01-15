@@ -8,31 +8,22 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Josefin+Slab:wght@400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* Special Layout for the Shop Embed */
-        body, html {
-            height: 100%;
-            overflow: hidden; /* Prevent double scrollbars */
-        }
+        /* This ensures the footer doesn't float up */
+        body, html { height: 100%; margin: 0; overflow-y: hidden; }
         
-        /* Adjust header to ensure it stays on top */
-        .site-header {
-            position: relative; /* Or fixed, depending on your preference */
-            z-index: 20;
+        /* The container that holds the RentMy store */
+        .shop-wrapper {
+            width: 100%;
+            height: calc(100vh - 80px); /* Full height minus your header */
+            margin-top: 80px; /* Push down to make room for header */
+            border: none;
         }
 
-        /* The Shop Window */
-        .shop-container {
-            width: 100%;
-            /* Calculate height: 100vh minus Header Height (approx 80px) */
-            height: calc(100vh - 80px); 
-            border: none;
-            display: block;
-        }
-        
         iframe {
             width: 100%;
             height: 100%;
             border: none;
+            display: block;
         }
     </style>
 </head>
@@ -46,16 +37,16 @@
             <nav class="nav-menu" id="nav-menu">
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="packages.html" class="nav-link">Packages</a>
-                <a href="shop.html" class="nav-link active">Shop Rentals</a>
+                <a href="shop.html" class="nav-link active" style="color:#b38538;">Shop Rentals</a>
                 <a href="faq.html" class="nav-link">FAQ</a>
                 <a href="contact.html" class="nav-link">Contact</a>
-                <a href="https://thebougiebeachpartyco.rentmy.shop/" target="_blank" class="btn btn-primary" style="padding: 10px 20px;">Book Now</a>
+                <a href="shop.html" class="btn btn-primary" style="padding: 10px 20px;">Book Now</a>
             </nav>
             <div class="mobile-toggle" id="mobile-toggle">☰</div>
         </div>
     </header>
 
-    <div class="shop-container">
+    <div class="shop-wrapper">
         <iframe src="https://thebougiebeachpartyco.rentmy.shop/" title="RentMy Shop"></iframe>
     </div>
 
