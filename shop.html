@@ -8,14 +8,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Josefin+Slab:wght@400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* This ensures the footer doesn't float up */
-        body, html { height: 100%; margin: 0; overflow-y: hidden; }
+        /* Lock the page so only the shop scrolls */
+        body, html { height: 100%; margin: 0; overflow: hidden; }
         
-        /* The container that holds the RentMy store */
+        /* Layout for the shop window */
         .shop-wrapper {
             width: 100%;
-            height: calc(100vh - 80px); /* Full height minus your header */
-            margin-top: 80px; /* Push down to make room for header */
+            height: calc(100vh - 80px); /* Fill screen minus header */
+            margin-top: 80px; 
             border: none;
         }
 
@@ -38,16 +38,17 @@
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="packages.html" class="nav-link">Packages</a>
                 <a href="shop.html" class="nav-link active" style="color:#b38538;">Shop Rentals</a>
-                <a href="faq.html" class="nav-link">FAQ</a>
-                <a href="contact.html" class="nav-link">Contact</a>
-                <a href="shop.html" class="btn btn-primary" style="padding: 10px 20px;">Book Now</a>
+                
+                <a href="https://thebougiebeachpartyco.rentmy.shop/cart" target="rentmy-frame" class="btn btn-primary" style="padding: 10px 20px;">
+                    View Cart 🛒
+                </a>
             </nav>
             <div class="mobile-toggle" id="mobile-toggle">☰</div>
         </div>
     </header>
 
     <div class="shop-wrapper">
-        <iframe src="https://thebougiebeachpartyco.rentmy.shop/" title="RentMy Shop"></iframe>
+        <iframe src="https://thebougiebeachpartyco.rentmy.shop/" name="rentmy-frame" title="RentMy Shop"></iframe>
     </div>
 
     <script src="script.js"></script>
