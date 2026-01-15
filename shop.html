@@ -8,15 +8,21 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Josefin+Slab:wght@400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* Lock the page so only the shop scrolls */
-        body, html { height: 100%; margin: 0; overflow: hidden; }
+        /* 1. FORCE WHITE BACKGROUND (Removes the Pink Bar) */
+        body, html { 
+            height: 100%; 
+            margin: 0; 
+            overflow: hidden;
+            background-color: #ffffff !important; /* Overrides the pink from style.css */
+        }
         
-        /* Layout for the shop window */
+        /* 2. ADJUST TOP SPACING */
         .shop-wrapper {
             width: 100%;
-            height: calc(100vh - 80px); /* Fill screen minus header */
-            margin-top: 80px; 
+            height: calc(100vh - 80px); 
+            margin-top: 80px; /* Matches header height exactly */
             border: none;
+            background: #ffffff; /* Ensures the container itself is white */
         }
 
         iframe {
@@ -24,6 +30,7 @@
             height: 100%;
             border: none;
             display: block;
+            background: #ffffff;
         }
     </style>
 </head>
