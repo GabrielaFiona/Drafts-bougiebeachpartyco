@@ -9,39 +9,40 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Josefin+Slab:wght@400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* --- 1. LAYOUT RESET FOR SHOP PAGE --- */
+        /* --- 1. CSS GRID LAYOUT --- */
+        /* This forces a rigid structure: Header space -> Shop content -> Footer */
         body, html { 
             background-color: #ffffff !important; 
             height: 100%; 
             margin: 0; 
-            overflow: hidden; /* Prevents double scrollbars */
+            overflow: hidden; /* Prevents the main page from scrolling, only the shop scrolls */
         }
 
         body {
-            display: flex;
-            flex-direction: column;
-            padding-top: 0 !important; /* Removes global header padding */
+            display: grid;
+            /* Row 1: 1fr (Takes all remaining space for the shop) */
+            /* Row 2: auto (Takes exactly the space needed for the footer) */
+            grid-template-rows: 1fr auto; 
+            padding-top: 80px; /* Keeps space for your fixed header */
         }
 
         /* --- 2. HEADER ADJUSTMENTS --- */
         .site-header {
             position: fixed;
+            top: 0; left: 0; width: 100%;
             background: #ffffff !important; 
             border-bottom: none !important; 
-            box-shadow: 0 4px 20px rgba(0,0,0,0.04); 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            z-index: 100;
         }
 
         /* --- 3. THE SHOP CONTAINER --- */
         .shop-wrapper {
-            flex: 1; 
-            /* THE FIX: min-height: 0 prevents the iframe from forcing the footer off-screen or floating */
-            min-height: 0; 
             width: 100%;
-            border: none;
+            height: 100%;
             background: #ffffff;
-            margin-top: 80px; 
             position: relative;
-            z-index: 1;
+            overflow: hidden; /* Ensures no spillover */
         }
 
         iframe {
@@ -49,20 +50,17 @@
             height: 100%;
             border: none;
             display: block;
-            background: #ffffff;
         }
 
         /* --- 4. FOOTER ADJUSTMENTS --- */
+        /* This is now a rigid block element at the bottom of the grid. No floating. */
         .bbp-footer {
-            margin-top: 0 !important;
+            margin: 0 !important;
             padding: 15px 20px !important;
-            flex-shrink: 0; /* Prevents footer from collapsing */
             background: var(--green);
             position: relative;
-            z-index: 10; 
-            
-            /* Visual Separation so it doesn't feel like it's "floating" */
-            border-top: 4px solid var(--gold); 
+            z-index: 20;
+            border-top: 4px solid var(--gold);
         }
     </style>
 </head>
