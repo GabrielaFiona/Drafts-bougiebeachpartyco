@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Josefin+Slab:wght@400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* --- 1. FULL SCREEN LAYOUT (Function of Bottom Example) --- */
+        /* --- 1. FULL SCREEN LAYOUT (From your "Function" script) --- */
         body, html { 
             height: 100%;
             margin: 0; 
@@ -31,7 +31,7 @@
         }
 
         /* --- 3. SHOP WINDOW (Fills Screen to Bottom) --- */
-        /* This is the logic from your functional example: bottom is 0 */
+        /* This matches your functional example exactly: bottom is 0 */
         .shop-wrapper {
             position: absolute;
             top: 90px; 
@@ -47,17 +47,17 @@
             display: block;
         }
 
-        /* --- 4. THE FOOTER (Look of Top Example) --- */
-        /* It sits ON TOP of the shop (Overlay) */
+        /* --- 4. THE FOOTER (Style of Top Example, Function of Bottom) --- */
+        /* We use 'fixed' like your FAB button so it sits ON TOP of the shop */
         .bbp-footer {
-            position: absolute;
+            position: fixed; /* Fixed to the viewport */
             bottom: 0;
             left: 0;
             width: 100%;
             height: 300px; /* Fixed Height */
             background-color: #314136; /* Dark Green */
             color: white;
-            z-index: 200; /* Sits above the iframe */
+            z-index: 2000; /* High Z-Index ensures it's on top */
             
             /* Layout */
             display: flex;
@@ -69,7 +69,7 @@
             box-sizing: border-box;
         }
 
-        /* Footer Styles */
+        /* Footer Styles (From your Style Script) */
         .footer-logo { width: 80px; height: auto; margin-bottom: 5px; }
         .footer-title {
             font-family: 'Josefin Slab', serif;
