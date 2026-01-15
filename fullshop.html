@@ -9,64 +9,68 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Josefin+Slab:wght@400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* --- 1. THE APP SHELL (The Real Fix) --- */
-        /* We turn the whole body into a column that fills the screen exactly */
+        /* --- 1. THE FLEX SANDWICH (Layout Fix) --- */
+        /* Forces the page to be exactly the height of the screen, no more, no less. */
         body, html { 
-            height: 100%; 
+            height: 100vh; /* Using vh ensures it fits the visual screen */
+            height: 100dvh; /* dynamic viewport height for mobile browsers */
             margin: 0; 
             padding: 0;
-            background-color: #ffffff; /* Safety background */
-            overflow: hidden; /* Stops the main page from having scrollbars */
+            background-color: #ffffff !important; 
+            overflow: hidden; /* Only the shop interior should scroll */
         }
 
         body {
             display: flex;
-            flex-direction: column; /* Stack: Header -> Shop -> Footer */
+            flex-direction: column; /* Stacks items vertically */
+            padding-top: 0 !important; /* Removes global padding override */
         }
 
-        /* --- 2. HEADER (Top Block) --- */
+        /* --- 2. HEADER (Top Bun) --- */
+        /* Changing position to 'relative' makes it a solid block that pushes content down */
         .site-header {
-            /* We reset the global fixed positioning to make it part of the stack */
             position: relative !important; 
-            flex: 0 0 auto; /* Don't grow, don't shrink, just be your height */
+            flex: 0 0 auto; /* Do not grow, do not shrink */
             background: #ffffff !important; 
             border-bottom: none !important; 
             box-shadow: 0 4px 20px rgba(0,0,0,0.04);
-            z-index: 10;
+            z-index: 20;
         }
 
-        /* --- 3. THE SHOP (The Flexible Middle) --- */
+        /* --- 3. THE SHOP (The Meat) --- */
         .shop-wrapper {
-            /* This is the magic. It forces the shop to fill ALL remaining space. */
-            flex: 1 1 auto; 
+            flex: 1 1 auto; /* Grow to fill ALL available space */
             position: relative;
             width: 100%;
             background: #ffffff;
-            overflow: hidden;
-            margin: 0;
-            padding: 0;
+            overflow: hidden; /* Keeps scrollbar inside this container */
+            
+            /* FIX FOR WHITE LINE: Ensures no text-spacing gaps */
+            font-size: 0; 
+            line-height: 0; 
         }
 
         iframe {
-            position: absolute;
-            top: 0; 
-            left: 0;
             width: 100%;
             height: 100%;
             border: none;
-            display: block;
+            /* FIX FOR WHITE LINE: Forces iframe to behave like a block, removing bottom gap */
+            display: block; 
         }
 
-        /* --- 4. FOOTER (Bottom Block) --- */
+        /* --- 4. FOOTER (Bottom Bun) --- */
+        /* Changing position to 'relative' ensures it sits AFTER the shop, never ON TOP */
         .bbp-footer {
-            /* No longer fixed! It sits naturally at the bottom of the stack. */
             position: relative !important;
-            flex: 0 0 auto; /* Takes exactly the height it needs */
+            flex: 0 0 auto; /* Do not grow, do not shrink */
             margin: 0 !important;
             padding: 15px 20px !important;
             background: var(--green);
-            z-index: 10;
+            z-index: 20;
+            
+            /* Visual clean-up */
             border-top: 4px solid var(--gold);
+            margin-top: -1px !important; /* Pulls it up 1px to ensure seamless connection */
         }
     </style>
 </head>
