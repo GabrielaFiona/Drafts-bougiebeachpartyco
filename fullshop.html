@@ -9,26 +9,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Josefin+Slab:wght@400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* 1. OVERRIDE THE PINK THEME */
-        /* Force the background to be white specifically for this page */
+        /* 1. FLEX LAYOUT for Header + Iframe + Footer */
         body, html { 
             background-color: #ffffff !important; 
-            background: #ffffff !important;
             height: 100%; 
             margin: 0; 
-            overflow: hidden; 
+            overflow: hidden; /* Prevent double scrollbars */
         }
 
-        /* 2. THE SHOP CONTAINER */
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 2. THE SHOP CONTAINER (Takes remaining space) */
         .shop-wrapper {
-            position: absolute; /* Lock it in place */
-            top: 80px; /* Start exactly below the header */
-            left: 0;
+            flex: 1; /* Grow to fill space between header and footer */
             width: 100%;
-            bottom: 0; /* Stretch to bottom */
             border: none;
-            background: #ffffff; /* Ensure white background behind iframe */
-            z-index: 1;
+            background: #ffffff;
+            margin-top: 80px; /* Offset for Fixed Header */
+            overflow: hidden;
         }
 
         iframe {
@@ -37,6 +38,13 @@
             border: none;
             display: block;
             background: #ffffff;
+        }
+
+        /* 3. Footer Adjustments for this page */
+        .bbp-footer {
+            margin-top: 0 !important; /* Remove huge gap for this specific page */
+            padding: 20px 20px !important; /* Slimmer footer for shop view */
+            flex-shrink: 0; /* Don't let footer shrink */
         }
     </style>
 </head>
@@ -66,6 +74,38 @@
     <div class="shop-wrapper">
         <iframe src="https://thebougiebeachpartyco.rentmy.shop/products-list" name="rentmy-frame" title="RentMy Shop"></iframe>
     </div>
+
+    <footer class="bbp-footer" role="contentinfo">
+        <div class="bbp-logo-wrap">
+          <img
+            class="bbp-logo"
+            src="https://raw.githubusercontent.com/GabrielaFiona/bougie-assets/3f8b85245206b18ae4050463b5044ed74ea5782b/sunlogotrans.png"
+            alt="The Bougie Beach Party Co. Sun Logo"
+            width="184"
+            height="136"
+          />
+        </div>
+    
+        <h3 class="bbp-name">The Bougie Beach Party Co.</h3>
+    
+        <div class="bbp-actions">
+          <a class="bbp-btn primary" href="mailto:thebougiebeachpartyco@gmail.com">💌 Email Us</a>
+          <a class="bbp-btn alt" href="tel:+15413518497">📞 Call / Text (541) 351-8497</a>
+        </div>
+    
+        <div class="bbp-socials">
+          <a href="https://www.instagram.com/thebougiebeachpartyco" target="_blank" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M7.75 2C4.126 2 2 4.126 2 7.75v8.5C2 19.874 4.126 22 7.75 22h8.5C19.874 22 22 19.874 22 16.25v-8.5C22 4.126 19.874 2 16.25 2h-8.5zM12 7a5 5 0 1 1 0 10a5 5 0 0 1 0-10zm0 1.75a3.25 3.25 0 1 0 0 6.5a3.25 3.25 0 0 0 0-6.5zM18 6.5a1 1 0 1 1-2 0a1 1 0 0 1 2 0z" /></svg>
+          </a>
+          <a href="https://www.facebook.com/thebougiebeachpartyco" target="_blank" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.5 9.87v-7H8v-2.87h2.5v-2.2c0-2.47 1.48-3.83 3.74-3.83c1.08 0 2.2.19 2.2.19v2.4h-1.24c-1.22 0-1.6.76-1.6 1.54v1.9H17l-.4 2.87h-2.5v7A10 10 0 0 0 22 12" /></svg>
+          </a>
+        </div>
+    
+        <div class="bbp-bottom">
+          © 2026 Bougie Beach Party Co. • All rights reserved.
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
