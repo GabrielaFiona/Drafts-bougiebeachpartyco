@@ -9,16 +9,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Josefin+Slab:wght@400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* --- 1. APP LAYOUT (Locked Screen) --- */
+        /* --- 1. LOCKED LAYOUT --- */
         body, html { 
             height: 100%;
             margin: 0; 
             padding: 0;
-            overflow: hidden; /* Only the iframe scrolls */
+            overflow: hidden; 
             background-color: #ffffff !important;
         }
 
-        /* --- 2. HEADER (Fixed Top) --- */
+        /* --- 2. HEADER --- */
         .site-header {
             position: absolute;
             top: 0;
@@ -30,12 +30,12 @@
             z-index: 100;
         }
 
-        /* --- 3. SHOP WINDOW (Fills Middle) --- */
+        /* --- 3. SHOP WINDOW (Calculated Gap) --- */
         .shop-wrapper {
             position: absolute;
             top: 90px;
-            /* IMPORTANT: This must match the Footer Height (320px) */
-            bottom: 320px; 
+            /* STOPPING POINT: This matches the footer height (260px) */
+            bottom: 260px; 
             width: 100%;
             z-index: 1;
             background: #ffffff;
@@ -48,124 +48,110 @@
             display: block;
         }
 
-        /* --- 4. THE FOOTER (Fixed Bottom - Screenshot Match) --- */
+        /* --- 4. THE FOOTER (Screenshot Style) --- */
         .bbp-footer {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 320px; /* Fixed Height */
-            background-color: #314136; /* Dark Green from screenshot */
+            height: 260px; /* FIXED HEIGHT */
+            background-color: #314136; /* Dark Green */
             color: white;
             z-index: 200;
-            
-            /* Flex Layout to center everything */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 15px; /* Spacing between elements */
-            
-            padding: 20px;
+            padding: 15px;
             box-sizing: border-box;
         }
 
-        /* Logo Image */
-        .footer-logo {
-            width: 90px;
-            height: auto;
-            margin-bottom: 5px;
-        }
+        /* Logo */
+        .footer-logo { width: 70px; height: auto; margin-bottom: 5px; }
 
-        /* Company Name */
+        /* Title */
         .footer-title {
             font-family: 'Josefin Slab', serif;
-            font-size: 1.8rem;
-            margin: 0;
+            font-size: 1.6rem;
+            margin: 5px 0 10px 0;
             letter-spacing: 1px;
             font-weight: 400;
-            color: #ffffff;
         }
 
-        /* Buttons Container */
+        /* Buttons Row */
         .footer-actions {
             display: flex;
-            gap: 15px;
+            gap: 12px;
             flex-wrap: wrap;
             justify-content: center;
-            margin-top: 5px;
+            margin-bottom: 10px;
         }
 
-        /* Email Button (Dark transparent pill) */
+        /* Email Button */
         .btn-footer-email {
             background-color: rgba(255, 255, 255, 0.15);
             color: white;
-            padding: 12px 25px;
-            border-radius: 50px; /* Pill shape */
+            padding: 10px 20px;
+            border-radius: 50px;
             text-decoration: none;
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
+            font-size: 0.9rem;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             transition: background 0.3s;
         }
         .btn-footer-email:hover { background-color: rgba(255, 255, 255, 0.25); }
 
-        /* Phone Button (White pill) */
+        /* Phone Button */
         .btn-footer-phone {
             background-color: #ffffff;
-            color: #314136; /* Dark Text */
-            padding: 12px 25px;
-            border-radius: 50px; /* Pill shape */
+            color: #314136;
+            padding: 10px 20px;
+            border-radius: 50px;
             text-decoration: none;
             font-family: 'Poppins', sans-serif;
             font-weight: 700;
+            font-size: 0.9rem;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             transition: transform 0.2s;
         }
         .btn-footer-phone:hover { transform: scale(1.05); }
 
-        /* Social Icons (White Circles) */
-        .footer-socials {
-            display: flex;
-            gap: 15px;
-            margin-top: 10px;
-        }
+        /* Social Icons */
+        .footer-socials { display: flex; gap: 12px; }
         .social-circle {
             background: white;
             color: #314136;
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             transition: transform 0.2s;
         }
         .social-circle:hover { transform: scale(1.1); }
 
-        /* Copyright Text */
+        /* Copyright */
         .footer-copy {
             font-family: 'Poppins', sans-serif;
-            font-size: 0.8rem;
-            opacity: 0.8;
+            font-size: 0.75rem;
+            opacity: 0.7;
             margin-top: 10px;
         }
 
         /* Mobile Adjustment */
         @media (max-width: 600px) {
-            .footer-title { font-size: 1.4rem; text-align: center; }
-            .footer-actions { flex-direction: column; width: 100%; max-width: 280px; }
-            .btn-footer-email, .btn-footer-phone { justify-content: center; width: 100%; box-sizing: border-box; }
-            
-            /* Adjust layout height for mobile */
-            .bbp-footer { height: auto; min-height: 350px; padding: 30px 20px; }
-            .shop-wrapper { bottom: 350px; } /* Must match mobile footer height */
+            .bbp-footer { height: 320px; padding: 20px; }
+            .shop-wrapper { bottom: 320px; } /* Shop must stop earlier on mobile */
+            .footer-actions { flex-direction: column; width: 100%; max-width: 260px; }
+            .btn-footer-email, .btn-footer-phone { justify-content: center; width: 100%; }
         }
     </style>
 </head>
@@ -195,33 +181,21 @@
     </div>
 
     <footer class="bbp-footer">
-        
         <img src="https://raw.githubusercontent.com/GabrielaFiona/bougie-assets/3f8b85245206b18ae4050463b5044ed74ea5782b/sunlogotrans.png" alt="Logo" class="footer-logo">
-        
         <h2 class="footer-title">The Bougie Beach Party Co.</h2>
-
         <div class="footer-actions">
             <a href="mailto:thebougiebeachpartyco@gmail.com" class="btn-footer-email">
                 <i class="fa-solid fa-envelope" style="color: #ff6b6b;"></i> Email Us
             </a>
             <a href="tel:+15413518497" class="btn-footer-phone">
-                <i class="fa-solid fa-phone"></i>
-                Call / Text (541) 351-8497
+                <i class="fa-solid fa-phone"></i> Call / Text (541) 351-8497
             </a>
         </div>
-
         <div class="footer-socials">
-            <a href="https://www.instagram.com/thebougiebeachpartyco" target="_blank" class="social-circle">
-                <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a href="https://www.facebook.com/thebougiebeachpartyco" target="_blank" class="social-circle">
-                <i class="fa-brands fa-facebook-f"></i>
-            </a>
+            <a href="https://www.instagram.com/thebougiebeachpartyco" target="_blank" class="social-circle"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.facebook.com/thebougiebeachpartyco" target="_blank" class="social-circle"><i class="fa-brands fa-facebook-f"></i></a>
         </div>
-
-        <div class="footer-copy">
-            © 2026 Bougie Beach Party Co. • All rights reserved.
-        </div>
+        <div class="footer-copy">© 2026 Bougie Beach Party Co. • All rights reserved.</div>
     </footer>
 
     <script src="script.js"></script>
