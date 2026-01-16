@@ -17,8 +17,16 @@
             </a>
             <nav class="nav-menu" id="nav-menu">
                 <a href="index.html" class="nav-link">Home</a>
-                <a href="packages.html" class="nav-link">Packages</a>
-                <a href="movie-night.html" class="nav-link">Movie Night</a>
+                
+                <div class="dropdown">
+                    <a href="explore.html" class="nav-link dropdown-toggle">Explore ▾</a>
+                    <div class="dropdown-content">
+                        <a href="explore.html">Inspiration Gallery</a>
+                        <a href="packages.html">All Rentals</a>
+                        <a href="movie-night.html">Movie Night</a>
+                    </div>
+                </div>
+
                 <a href="faq.html" class="nav-link">FAQ</a>
                 <a href="contact.html" class="nav-link">Contact</a>
                 
@@ -35,39 +43,50 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1>The Bougie Beach Party Co.</h1>
-            <p>Celebrate Without the Setup. Our professional delivery, set-up, and teardown of rental themes make your party feel smooth and look bougie.</p>
-            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-                <a href="packages.html" class="btn btn-primary">View Packages</a>
-                <a href="fullshop.html" class="btn btn-secondary" style="color: white; border-color: white;">Browse Rentals</a>
+            <p>We’re your stylish best friends inviting you to the ultimate seaside soirée. We handle the heavy lifting so you can sip, laugh, and celebrate.</p>
+            
+            <div class="hero-btns">
+                <a href="explore.html" class="btn btn-primary">Find Your Vibe</a>
+                <a href="packages.html" class="btn btn-secondary" style="color: white; border-color: white;">Browse All Rentals</a>
+            </div>
+        </div>
+    </section>
+
+    <div style="background: var(--page-pink);">
+        <svg class="wave-divider" viewBox="0 0 1440 120" preserveAspectRatio="none">
+             <path fill="#ffffff" d="M0,32L48,37.3C96,43,192,53,288,58.7C384,64,480,64,576,58.7C672,53,768,43,864,42.7C960,43,1056,53,1152,58.7C1248,64,1344,64,1392,64L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        </svg>
+    </div>
+
+    <section class="section-pad" style="background: var(--white); margin-top: -10px;">
+        <div class="container">
+            <div class="card-grid text-center" style="margin-top: 0; gap: 30px;">
+                <div class="info-card">
+                    <div style="font-size: 2.5rem; margin-bottom: 10px;">✨</div>
+                    <h3 style="color:var(--gold);">Curated Luxury</h3>
+                    <p>From vintage rugs to crystal goblets, we style the scene so you can make the memories.</p>
+                </div>
+                <div class="info-card">
+                    <div style="font-size: 2.5rem; margin-bottom: 10px;">🫧</div>
+                    <h3 style="color:var(--gold);">Weather Ready</h3>
+                    <p>Our crystal-clear bubbles keep you cozy and dry, rain or shine, on the Oregon coast.</p>
+                </div>
+                <div class="info-card">
+                    <div style="font-size: 2.5rem; margin-bottom: 10px;">🚚</div>
+                    <h3 style="color:var(--gold);">Zero Hassle</h3>
+                    <p>We deliver, set up, and tear down. You just show up looking fabulous.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <section class="section-pad">
         <div class="container">
-            <div class="card-grid text-center" style="margin-top: 0;">
-                <div>
-                    <h3 style="color:var(--gold);">Curated Luxury</h3>
-                    <p>We style the scene, you make the memories. From rugs to goblets, we handle the design.</p>
-                </div>
-                <div>
-                    <h3 style="color:var(--gold);">Weather Ready</h3>
-                    <p>Our crystal-clear bubbles keep you cozy and dry, rain or shine, on the Oregon coast.</p>
-                </div>
-                <div>
-                    <h3 style="color:var(--gold);">Zero Hassle</h3>
-                    <p>Full delivery, professional setup, and teardown is included in every package.</p>
-                </div>
+            <div class="text-center" style="margin-bottom: 50px;">
+                <h2>What are we celebrating?</h2>
+                <p>Pick a package or build your own DIY party.</p>
             </div>
-        </div>
-    </section>
-
-    <section class="section-pad" style="background: white;">
-        <div class="container">
-            <div class="text-center">
-                <h2>Choose Your Experience</h2>
-                <p>What are we celebrating today?</p>
-            </div>
+            
             <div class="card-grid">
                 <a href="packages.html#picnics" class="card">
                     <div class="card-img">
@@ -75,43 +94,43 @@
                     </div>
                     <div class="card-body text-center">
                         <h3>Bubble Picnics</h3>
-                        <p>Romantic dates and group gatherings.</p>
-                        <span style="color:var(--gold); font-weight:bold;">Explore &rarr;</span>
+                        <p>Romantic dates and group gatherings inside our clear domes.</p>
+                        <span style="color:var(--gold); font-weight:bold; margin-top: 15px; display:block;">See Packages &rarr;</span>
                     </div>
                 </a>
-                <a href="packages.html#movie" class="card">
+
+                <a href="movie-night.html" class="card">
                     <div class="card-img">
                         <img src="https://images.unsplash.com/photo-1595769816263-9b910be24d5f?auto=format&fit=crop&w=800" alt="Movie Night">
                     </div>
                     <div class="card-body text-center">
                         <h3>Movie Nights</h3>
-                        <p>Cinema under the stars (or inside a bubble).</p>
-                        <span style="color:var(--gold); font-weight:bold;">Explore &rarr;</span>
+                        <p>Cinema under the stars (or inside a bubble) with 4K projection.</p>
+                        <span style="color:var(--gold); font-weight:bold; margin-top: 15px; display:block;">View Details &rarr;</span>
                     </div>
                 </a>
-                <a href="fullshop.html" class="card">
+
+                <a href="packages.html" class="card">
                     <div class="card-img">
                         <img src="https://images.unsplash.com/photo-1530103862676-de3c9da59af7?auto=format&fit=crop&w=800" alt="Party Rentals">
                     </div>
                     <div class="card-body text-center">
                         <h3>Shop DIY Rentals</h3>
-                        <p>Build your own party with our inventory.</p>
-                        <span style="color:var(--gold); font-weight:bold;">Shop All &rarr;</span>
+                        <p>Just need a few chairs, a cooler, or a screen? Rent à la carte.</p>
+                        <span style="color:var(--gold); font-weight:bold; margin-top: 15px; display:block;">Shop Inventory &rarr;</span>
                     </div>
                 </a>
+            </div>
+            
+            <div class="text-center" style="margin-top: 60px;">
+                <a href="explore.html" class="btn btn-primary">Get Inspired</a>
             </div>
         </div>
     </section>
 
     <footer class="bbp-footer" role="contentinfo">
         <div class="bbp-logo-wrap">
-          <img
-            class="bbp-logo"
-            src="https://raw.githubusercontent.com/GabrielaFiona/bougie-assets/3f8b85245206b18ae4050463b5044ed74ea5782b/sunlogotrans.png"
-            alt="The Bougie Beach Party Co. Sun Logo"
-            width="184"
-            height="136"
-          />
+          <img class="bbp-logo" src="https://raw.githubusercontent.com/GabrielaFiona/bougie-assets/3f8b85245206b18ae4050463b5044ed74ea5782b/sunlogotrans.png" alt="The Bougie Beach Party Co. Sun Logo">
         </div>
     
         <h3 class="bbp-name">The Bougie Beach Party Co.</h3>
