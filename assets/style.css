@@ -806,95 +806,142 @@ ul { list-style: none; }
 }
 
 /* =========================================
-   11. CELEBRATIONS PAGE STYLES (NEW SPLIT LAYOUT)
+   11. CELEBRATIONS PAGE STYLES (THEMED & ZIGZAG)
    ========================================= */
 
+/* Base Section Styling */
+.theme-section {
+    padding: 80px 0;
+    width: 100%;
+    position: relative;
+    /* Wave Divider Effect Between Sections */
+    border-bottom: 2px solid rgba(0,0,0,0.03); 
+}
+
+/* --- THEME DEFINITIONS --- */
+
+/* 1. Girls Theme (Pink/Girly) */
+.theme-girls {
+    background-color: var(--page-pink); /* Light Pink BG */
+}
+.theme-girls h2 {
+    color: #d15a7c; /* Darker Pink Text */
+    font-family: var(--font-accent); /* Dancing Script */
+    font-size: 3rem;
+}
+.theme-girls .idea-card {
+    border-left-color: #d15a7c;
+}
+
+/* 2. Romance Theme (Warm/Terracotta) */
+.theme-romance {
+    background-color: #fffbf7; /* Warm White BG */
+}
+.theme-romance h2 {
+    color: var(--terracotta);
+    font-family: var(--font-head);
+}
+.theme-romance .idea-card {
+    border-left-color: var(--terracotta);
+}
+
+/* 3. Family Theme (Fresh/Blue) */
+.theme-family {
+    background-color: #f0f8ff; /* Alice Blue BG */
+}
+.theme-family h2 {
+    color: #4a90e2;
+    font-family: var(--font-body);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.theme-family .idea-card {
+    border-left-color: #4a90e2;
+}
+
+/* 4. Date Night (Smokey/Moody) */
+.theme-date {
+    background-color: #f4f7f7; /* Light Grey/Blue BG */
+}
+.theme-date h2 {
+    color: var(--smokey-blue);
+    font-family: var(--font-head);
+}
+.theme-date .idea-card {
+    border-left-color: var(--smokey-blue);
+}
+
+/* 5. Casual (Green/Earthy) */
+.theme-casual {
+    background-color: var(--white);
+}
+.theme-casual h2 {
+    color: var(--green);
+    font-family: var(--font-head);
+}
+.theme-casual .idea-card {
+    border-left-color: var(--green);
+    background: #f9f9f9;
+}
+
+/* --- LAYOUT COMPONENTS --- */
+
+.theme-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 50px;
+}
+
+.theme-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.theme-header p {
+    font-size: 1.1rem;
+    color: var(--ink);
+    opacity: 0.8;
+    margin-top: 10px;
+}
+
+/* The Zig-Zag Row */
 .celeb-row {
     display: flex;
     align-items: center;
     gap: 60px;
-    padding: 80px 0;
-    border-bottom: 1px solid rgba(179, 133, 56, 0.2);
 }
 
-/* Alternating Layout: Zig-Zag */
-.celeb-row:nth-child(even) {
+/* Reverses the order for visual interest */
+.celeb-row.reverse {
     flex-direction: row-reverse;
 }
 
-.celeb-row:last-child {
-    border-bottom: none;
-}
-
-/* Left/Right Side Image */
 .celeb-image {
     flex: 1;
-    height: 450px;
+    height: 400px;
     border-radius: var(--radius);
     overflow: hidden;
     box-shadow: var(--shadow-soft);
-    position: relative;
-    /* Added to align the overlay title */
-    display: flex;
-    align-items: flex-end; 
-    justify-content: center;
 }
 
 .celeb-image img {
-    width: 100%; 
-    height: 100%; 
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     transition: transform 0.5s ease;
-    position: absolute;
-    top: 0; left: 0;
-    z-index: 1;
 }
 
-.celeb-row:hover .celeb-image img {
+.celeb-image:hover img {
     transform: scale(1.05);
 }
 
-/* Overlay Title Style */
-.celeb-overlay-title {
-    position: relative; /* sits on top of absolute image */
-    z-index: 2;
-    color: var(--ink);
-    font-size: 2.8rem;
-    text-align: center;
-    line-height: 1.1;
-    padding: 0 15px 25px 15px;
-    margin: 0;
-    
-    /* THE WHITE OUTLINE EFFECT */
-    text-shadow: 
-        2px 2px 0px #ffffff, 
-        -2px -2px 0px #ffffff,  
-        2px -2px 0px #ffffff, 
-        -2px 2px 0px #ffffff,
-        2px 0px 0px #ffffff, 
-        -2px 0px 0px #ffffff, 
-        0px 2px 0px #ffffff, 
-        0px -2px 0px #ffffff;
-}
-
-/* Content Side */
-.celeb-details {
+.celeb-services {
     flex: 1;
 }
 
-.celeb-title-wrap {
-    margin-bottom: 25px;
-}
-
-.celeb-excerpt {
-    font-size: 1.1rem;
-    color: #555;
-    font-weight: 300;
-    max-width: 90%;
-    margin-top: 10px;
-}
-
-/* Idea List (Text Cards) */
+/* Service Cards */
 .idea-list {
     display: grid;
     gap: 20px;
@@ -904,29 +951,30 @@ ul { list-style: none; }
     background: var(--white);
     padding: 20px 25px;
     border-radius: 12px;
-    border-left: 5px solid var(--gold);
+    border-left-style: solid;
+    border-left-width: 5px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.03);
     transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    text-decoration: none;
+    display: block;
 }
 
 .idea-card:hover {
     transform: translateX(10px);
-    box-shadow: 0 6px 20px rgba(179, 133, 56, 0.15);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
 }
 
 .idea-card h4 {
     margin: 0 0 5px 0;
     color: var(--ink);
     font-size: 1.25rem;
+    font-family: var(--font-head);
 }
 
 .idea-card p {
     font-size: 0.95rem;
     color: #666;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .idea-link {
@@ -935,43 +983,21 @@ ul { list-style: none; }
     color: var(--gold);
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
 }
 
-/* Mobile Adjustments for Split Layout */
+/* Mobile Responsive */
 @media (max-width: 900px) {
-    .celeb-row {
+    .celeb-row, .celeb-row.reverse {
         flex-direction: column;
         gap: 30px;
-        padding: 60px 0;
-        text-align: center;
-    }
-    
-    .celeb-row:nth-child(even) {
-        flex-direction: column; /* Stack vertically on mobile, don't reverse */
     }
     
     .celeb-image {
         width: 100%;
-        height: 300px;
+        height: 250px;
     }
     
-    .celeb-overlay-title {
-        font-size: 2.2rem;
-        padding-bottom: 20px;
-    }
-    
-    .celeb-details {
-        width: 100%;
-    }
-    
-    .idea-card {
-        text-align: left; /* Keep cards readable */
-    }
-    
-    .celeb-excerpt {
-        margin: 0 auto 25px;
+    .theme-section {
+        padding: 50px 0;
     }
 }
