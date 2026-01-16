@@ -143,6 +143,12 @@ ul { list-style: none; }
   align-items: center; 
 }
 
+/* Active State for Universal Script */
+.nav-link.active {
+    color: var(--gold);
+    border-bottom: 2px solid var(--gold);
+}
+
 .nav-link:hover { color: var(--gold); }
 
 .mobile-toggle { display: none; font-size: 1.5rem; cursor: pointer; }
