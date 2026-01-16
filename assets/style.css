@@ -834,6 +834,10 @@ ul { list-style: none; }
     overflow: hidden;
     box-shadow: var(--shadow-soft);
     position: relative;
+    /* Added to align the overlay title */
+    display: flex;
+    align-items: flex-end; 
+    justify-content: center;
 }
 
 .celeb-image img {
@@ -841,10 +845,36 @@ ul { list-style: none; }
     height: 100%; 
     object-fit: cover;
     transition: transform 0.5s ease;
+    position: absolute;
+    top: 0; left: 0;
+    z-index: 1;
 }
 
 .celeb-row:hover .celeb-image img {
     transform: scale(1.05);
+}
+
+/* Overlay Title Style */
+.celeb-overlay-title {
+    position: relative; /* sits on top of absolute image */
+    z-index: 2;
+    color: var(--ink);
+    font-size: 2.8rem;
+    text-align: center;
+    line-height: 1.1;
+    padding: 0 15px 25px 15px;
+    margin: 0;
+    
+    /* THE WHITE OUTLINE EFFECT */
+    text-shadow: 
+        2px 2px 0px #ffffff, 
+        -2px -2px 0px #ffffff,  
+        2px -2px 0px #ffffff, 
+        -2px 2px 0px #ffffff,
+        2px 0px 0px #ffffff, 
+        -2px 0px 0px #ffffff, 
+        0px 2px 0px #ffffff, 
+        0px -2px 0px #ffffff;
 }
 
 /* Content Side */
@@ -856,18 +886,12 @@ ul { list-style: none; }
     margin-bottom: 25px;
 }
 
-.celeb-title-wrap h2 {
-    font-size: 2.8rem;
-    color: var(--green);
-    margin-bottom: 5px;
-    line-height: 1.1;
-}
-
 .celeb-excerpt {
     font-size: 1.1rem;
     color: #555;
     font-weight: 300;
     max-width: 90%;
+    margin-top: 10px;
 }
 
 /* Idea List (Text Cards) */
@@ -931,7 +955,12 @@ ul { list-style: none; }
     
     .celeb-image {
         width: 100%;
-        height: 250px; /* Shorter on mobile */
+        height: 300px;
+    }
+    
+    .celeb-overlay-title {
+        font-size: 2.2rem;
+        padding-bottom: 20px;
     }
     
     .celeb-details {
