@@ -806,7 +806,7 @@ ul { list-style: none; }
 }
 
 /* =========================================
-   11. CELEBRATIONS PAGE STYLES (THEMED & ZIGZAG)
+   11. CELEBRATIONS PAGE STYLES (OVERLAP)
    ========================================= */
 
 /* Base Section Styling */
@@ -814,7 +814,6 @@ ul { list-style: none; }
     padding: 80px 0;
     width: 100%;
     position: relative;
-    /* Wave Divider Effect Between Sections */
     border-bottom: 2px solid rgba(0,0,0,0.03); 
 }
 
@@ -822,11 +821,11 @@ ul { list-style: none; }
 
 /* 1. Girls Theme (Pink/Girly) */
 .theme-girls {
-    background-color: var(--page-pink); /* Light Pink BG */
+    background-color: var(--page-pink); 
 }
 .theme-girls h2 {
-    color: #d15a7c; /* Darker Pink Text */
-    font-family: var(--font-accent); /* Dancing Script */
+    color: #d15a7c; 
+    font-family: var(--font-accent); 
     font-size: 3rem;
 }
 .theme-girls .idea-card {
@@ -835,7 +834,7 @@ ul { list-style: none; }
 
 /* 2. Romance Theme (Warm/Terracotta) */
 .theme-romance {
-    background-color: #fffbf7; /* Warm White BG */
+    background-color: #fffbf7; 
 }
 .theme-romance h2 {
     color: var(--terracotta);
@@ -847,7 +846,7 @@ ul { list-style: none; }
 
 /* 3. Family Theme (Fresh/Blue) */
 .theme-family {
-    background-color: #f0f8ff; /* Alice Blue BG */
+    background-color: #f0f8ff; 
 }
 .theme-family h2 {
     color: #4a90e2;
@@ -862,7 +861,7 @@ ul { list-style: none; }
 
 /* 4. Date Night (Smokey/Moody) */
 .theme-date {
-    background-color: #f4f7f7; /* Light Grey/Blue BG */
+    background-color: #f4f7f7; 
 }
 .theme-date h2 {
     color: var(--smokey-blue);
@@ -885,12 +884,12 @@ ul { list-style: none; }
     background: #f9f9f9;
 }
 
-/* --- LAYOUT COMPONENTS --- */
+/* --- OVERLAP LAYOUT COMPONENTS --- */
 
 .theme-header {
     text-align: center;
     max-width: 700px;
-    margin: 0 auto 50px;
+    margin: 0 auto 40px;
 }
 
 .theme-icon {
@@ -906,66 +905,62 @@ ul { list-style: none; }
     margin-top: 10px;
 }
 
-/* The Zig-Zag Row */
-.celeb-row {
-    display: flex;
-    align-items: center;
-    gap: 60px;
-}
-
-/* Reverses the order for visual interest */
-.celeb-row.reverse {
-    flex-direction: row-reverse;
-}
-
-.celeb-image {
-    flex: 1;
-    height: 400px;
-    border-radius: var(--radius);
+/* 2. Large Hero Image */
+.celeb-media {
+    width: 100%;
+    height: 350px; /* Limits height so we see text above and below */
     overflow: hidden;
+    border-radius: var(--radius);
     box-shadow: var(--shadow-soft);
+    position: relative;
+    z-index: 1;
 }
 
-.celeb-image img {
+.celeb-media img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
 }
 
-.celeb-image:hover img {
-    transform: scale(1.05);
+/* 3. The Overlapping Service Container */
+.celeb-services-overlap {
+    position: relative;
+    z-index: 2; /* Sits on top */
+    margin-top: -80px; /* Pulls it UP over the image */
+    padding: 0 20px;
 }
 
-.celeb-services {
-    flex: 1;
-}
-
-/* Service Cards */
-.idea-list {
+/* Grid for Cards */
+.idea-grid {
     display: grid;
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
+/* The Cards */
 .idea-card {
     background: var(--white);
-    padding: 20px 25px;
+    padding: 25px;
     border-radius: 12px;
     border-left-style: solid;
     border-left-width: 5px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* Stronger shadow for lift */
     transition: all 0.3s ease;
     text-decoration: none;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .idea-card:hover {
-    transform: translateX(10px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
 }
 
 .idea-card h4 {
-    margin: 0 0 5px 0;
+    margin: 0 0 8px 0;
     color: var(--ink);
     font-size: 1.25rem;
     font-family: var(--font-head);
@@ -974,7 +969,8 @@ ul { list-style: none; }
 .idea-card p {
     font-size: 0.95rem;
     color: #666;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    flex-grow: 1;
 }
 
 .idea-link {
@@ -985,18 +981,17 @@ ul { list-style: none; }
     letter-spacing: 0.5px;
 }
 
-/* Mobile Responsive */
-@media (max-width: 900px) {
-    .celeb-row, .celeb-row.reverse {
-        flex-direction: column;
-        gap: 30px;
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .celeb-media {
+        height: 200px; /* Shorter image on mobile */
     }
-    
-    .celeb-image {
-        width: 100%;
-        height: 250px;
+    .celeb-services-overlap {
+        margin-top: -40px; /* Less overlap */
     }
-    
+    .idea-grid {
+        grid-template-columns: 1fr; /* Stack cards */
+    }
     .theme-section {
         padding: 50px 0;
     }
