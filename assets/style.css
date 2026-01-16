@@ -996,3 +996,55 @@ ul { list-style: none; }
         padding: 50px 0;
     }
 }
+
+/* =========================================
+   12. RENTAL INQUIRY FORM (Added)
+   ========================================= */
+
+.rental-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+/* Container for hidden form */
+.inquiry-form-wrap {
+    display: none; /* Hidden by default */
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    padding: 25px;
+    border-radius: var(--radius);
+    margin-top: 20px;
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.03);
+    animation: fadeIn 0.4s ease;
+}
+
+/* Form Layout */
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.form-row input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-family: var(--font-body);
+}
+
+@media (max-width: 600px) {
+    .form-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .rental-actions {
+        flex-direction: column;
+    }
+    .rental-actions .btn {
+        width: 100%;
+    }
+}
