@@ -20,12 +20,11 @@
 
         /* --- 2. HEADER (Fixed) --- */
         .site-header {
-            position: absolute;
+            position: absolute; /* Keeps it over the iframe */
             top: 0;
             left: 0;
             width: 100%;
-            height: 90px;
-            background: #ffffff !important;
+            /* Removed background override so it uses style.css (PINK) */
             box-shadow: 0 4px 20px rgba(0,0,0,0.04);
             z-index: 1000;
         }
@@ -33,7 +32,7 @@
         /* --- 3. SHOP WINDOW (Fills Screen) --- */
         .shop-wrapper {
             position: absolute;
-            top: 90px;
+            top: 80px; /* Matched to header height */
             bottom: 0;
             width: 100%;
             z-index: 1;
@@ -89,13 +88,13 @@
 
     <header class="site-header">
         <div class="container header-inner">
-            <a href="index.html" class="logo">
+            <a href="home.html" class="logo">
                 <img src="https://raw.githubusercontent.com/GabrielaFiona/bougie-assets/3f8b85245206b18ae4050463b5044ed74ea5782b/sunlogotrans.png" alt="Bougie Beach Party Logo">
             </a>
             <nav class="nav-menu" id="nav-menu">
-                <a href="index.html" class="nav-link">Home</a>
+                <a href="home.html" class="nav-link">Home</a>
                 <a href="packages.html" class="nav-link">Packages</a>
-                <a href="fullshop.html" class="nav-link active" style="color:#b38538;">Explore All Packages</a>
+                <a href="fullshop.html" class="nav-link">Explore All Packages</a>
                 <a href="faq.html" class="nav-link">FAQ</a>
                 <a href="contact.html" class="nav-link">Contact</a>
                 <a href="https://thebougiebeachpartyco.rentmy.shop/cart" target="rentmy-frame" class="btn btn-primary" style="padding: 10px 20px; display: flex; align-items: center; gap: 8px;">
