@@ -97,3 +97,64 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// --- 7. HOMEPAGE CARD SLIDESHOW (Hover & Scroll) ---
+    const sliders = document.querySelectorAll('.hover-slider');
+
+    sliders.forEach(card => {
+        const imgElement = card.querySelector('.slide-img');
+        if (!imgElement) return;
+
+        // Get original and slide images
+        const originalSrc = imgElement.src;
+        const slides = JSON.parse(imgElement.getAttribute('data-slides') || '[]');
+        
+        // Combine all images into one array for cycling
+        const allImages = [originalSrc, ...slides];
+        
+        let currentIndex = 0;
+        let interval;
+
+        // Function to cycle images
+        const cycleImages = () => {
+            interval = setInterval(() => {
+                currentIndex = (currentIndex + 1) % allImages.length;
+                imgElement.style.opacity = '0.8'; // Slight fade effect
+                setTimeout(() => {
+                    imgElement.src = allImages[currentIndex];
+                    imgElement.style.opacity = '1';
+                }, 150);
+            }, 1500); // Change image every 1.5 seconds
+        };
+
+        const stopCycling = () => {
+            clearInterval(interval);
+            imgElement.src = originalSrc; // Reset to cover image
+            currentIndex = 0;
+        };
+
+        // DESKTOP: Hover Logic
+        card.addEventListener('mouseenter', cycleImages);
+        card.addEventListener('mouseleave', stopCycling);
+
+        // MOBILE: Intersection Observer (Auto-play when viewing)
+        // Checks if device is touch-enabled or small screen
+        if (window.matchMedia("(max-width: 900px)").matches || 'ontouchstart' in window) {
+            
+            // Remove hover listeners to avoid conflicts
+            card.removeEventListener('mouseenter', cycleImages);
+            card.removeEventListener('mouseleave', stopCycling);
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        cycleImages();
+                    } else {
+                        stopCycling();
+                    }
+                });
+            }, { threshold: 0.6 }); // Trigger when 60% visible
+
+            observer.observe(card);
+        }
+    });
