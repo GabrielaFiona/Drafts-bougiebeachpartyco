@@ -80,8 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
     inquiryBtns.forEach(btn => {
         btn.addEventListener('click', function() {
             // Find the form container relative to the button clicked
-            // It is located in the parent container's next sibling or finding closest wrapper
-            // Based on HTML structure: Button is in .rental-actions, Form is in .inquiry-form-wrap (sibling)
             const parent = this.closest('.zigzag-content');
             const form = parent.querySelector('.inquiry-form-wrap');
             
@@ -96,65 +94,38 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-});
 
-// --- 7. HOMEPAGE CARD SLIDESHOW (Hover & Scroll) ---
-    const sliders = document.querySelectorAll('.hover-slider');
+    // --- 7. GALLERY LIGHTBOX (UPDATED) ---
+    const galleryItems = document.querySelectorAll('.gallery-item img');
+    const lightbox = document.getElementById('gallery-lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const closeBtn = document.getElementById('lightbox-close');
 
-    sliders.forEach(card => {
-        const imgElement = card.querySelector('.slide-img');
-        if (!imgElement) return;
+    if(lightbox) {
+        // Open Lightbox
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                lightboxImg.src = item.src;
+                lightbox.classList.add('active');
+            });
+        });
 
-        // Get original and slide images
-        const originalSrc = imgElement.src;
-        const slides = JSON.parse(imgElement.getAttribute('data-slides') || '[]');
-        
-        // Combine all images into one array for cycling
-        const allImages = [originalSrc, ...slides];
-        
-        let currentIndex = 0;
-        let interval;
-
-        // Function to cycle images
-        const cycleImages = () => {
-            interval = setInterval(() => {
-                currentIndex = (currentIndex + 1) % allImages.length;
-                imgElement.style.opacity = '0.8'; // Slight fade effect
-                setTimeout(() => {
-                    imgElement.src = allImages[currentIndex];
-                    imgElement.style.opacity = '1';
-                }, 150);
-            }, 1500); // Change image every 1.5 seconds
+        // Close functions
+        const closeLightbox = () => {
+            lightbox.classList.remove('active');
+            setTimeout(() => { lightboxImg.src = ''; }, 300); // Clear source after fade
         };
 
-        const stopCycling = () => {
-            clearInterval(interval);
-            imgElement.src = originalSrc; // Reset to cover image
-            currentIndex = 0;
-        };
-
-        // DESKTOP: Hover Logic
-        card.addEventListener('mouseenter', cycleImages);
-        card.addEventListener('mouseleave', stopCycling);
-
-        // MOBILE: Intersection Observer (Auto-play when viewing)
-        // Checks if device is touch-enabled or small screen
-        if (window.matchMedia("(max-width: 900px)").matches || 'ontouchstart' in window) {
-            
-            // Remove hover listeners to avoid conflicts
-            card.removeEventListener('mouseenter', cycleImages);
-            card.removeEventListener('mouseleave', stopCycling);
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        cycleImages();
-                    } else {
-                        stopCycling();
-                    }
-                });
-            }, { threshold: 0.6 }); // Trigger when 60% visible
-
-            observer.observe(card);
+        if(closeBtn) {
+            closeBtn.addEventListener('click', closeLightbox);
         }
-    });
+
+        // Close on background click
+        lightbox.addEventListener('click', (e) => {
+            if(e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+    }
+
+});
