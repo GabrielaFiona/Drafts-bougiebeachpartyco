@@ -1135,82 +1135,127 @@ ul { list-style: none; }
 }
 
 /* =========================================
-   14. NEW UPDATES (Hero Fix & Gallery)
+   14. NEW UPDATES (Mobile Fix & Gallery Arrows)
    ========================================= */
 
-/* --- Mobile Hero Fix (Request 1) --- */
+/* --- Mobile Hero Fix (Updated) --- */
 @media (max-width: 768px) {
     .hero {
-        /* Reduced height to allow next section to peek through */
-        min-height: 60vh; 
-        padding: 100px 20px 40px; 
-        align-items: center; /* Center content vertically */
+        /* Removed min-height so it shrinks to fit content exactly */
+        min-height: auto; 
+        /* Adjusted padding: 
+           Top: 110px (clears the 80px fixed header + 30px breathing room)
+           Bottom: 40px (space before the wave divider) 
+        */
+        padding: 110px 20px 40px; 
+        align-items: flex-start; /* Aligns content to top rather than center */
     }
+    
+    .hero-content {
+        margin: 0 auto; /* Keeps text centered horizontally */
+    }
+
     .hero h1 {
-        font-size: 2rem; /* Slightly smaller for mobile */
+        font-size: 2rem;
         margin-bottom: 1rem;
+        line-height: 1.2;
     }
+    
     .hero p {
         margin-bottom: 1.5rem;
         font-size: 1rem;
     }
 }
 
-/* --- Horizontal Gallery Strip (Request 3) --- */
+/* --- Gallery Styling (Updated with Arrows) --- */
 .gallery-section {
     padding: 60px 0;
     background: #fff;
-    overflow: hidden; /* Hides horizontal scrollbar of parent */
+    overflow: hidden; 
+}
+
+/* New Wrapper to hold arrows relative to strip */
+.gallery-wrapper {
+    position: relative;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 20px; /* Space for arrows on edges */
 }
 
 .gallery-strip {
     display: flex;
     gap: 20px;
-    overflow-x: auto; /* Enables horizontal scrolling */
-    padding: 20px 25px;
+    overflow-x: auto;
+    padding: 20px 5px; /* Slight padding for shadow clearance */
     scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
-    
-    /* Hide scrollbar visually but keep functionality */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none;  /* IE 10+ */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
 }
 
-.gallery-strip::-webkit-scrollbar { 
-    display: none; /* Chrome/Safari */
-}
+.gallery-strip::-webkit-scrollbar { display: none; }
 
 .gallery-item {
-    flex: 0 0 auto; /* Prevents squishing */
-    width: 280px;   /* Fixed width for uniformity */
+    flex: 0 0 auto;
+    width: 280px;
     height: 350px;
     border-radius: var(--radius);
     overflow: hidden;
     cursor: pointer;
     box-shadow: var(--shadow-soft);
-    position: relative;
     transition: transform 0.3s ease;
+    position: relative;
 }
 
-.gallery-item:hover {
-    transform: scale(1.03);
-}
+.gallery-item:hover { transform: scale(1.03); }
 
 .gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: opacity 0.3s;
+    width: 100%; height: 100%; object-fit: cover;
 }
 
-/* --- Lightbox (Popup View) --- */
+/* Navigation Arrows */
+.gallery-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--gold);
+    color: var(--white);
+    border: none;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: background 0.3s ease, transform 0.2s;
+}
+
+.gallery-nav:hover {
+    background: var(--gold-hover);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.gallery-nav.prev { left: 10px; }
+.gallery-nav.next { right: 10px; }
+
+/* Hide arrows on mobile since touch scroll is better */
+@media (max-width: 768px) {
+    .gallery-nav { display: none; }
+    .gallery-wrapper { padding: 0; }
+    .gallery-strip { padding-left: 20px; padding-right: 20px; }
+}
+
+/* --- Lightbox --- */
 .lightbox {
-    display: none; /* Hidden by default */
+    display: none;
     position: fixed;
     z-index: 3000;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: rgba(58, 47, 42, 0.95); /* Dark overlay using brand ink color */
+    background: rgba(58, 47, 42, 0.95);
     backdrop-filter: blur(5px);
     justify-content: center;
     align-items: center;
@@ -1219,36 +1264,19 @@ ul { list-style: none; }
     transition: opacity 0.3s ease;
 }
 
-.lightbox.active {
-    display: flex;
-    opacity: 1;
-}
+.lightbox.active { display: flex; opacity: 1; }
 
 .lightbox-content {
-    max-width: 90%;
-    max-height: 90vh;
+    max-width: 90%; max-height: 90vh;
     border-radius: 8px;
     box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    transform: scale(0.9);
-    transition: transform 0.3s ease;
+    transform: scale(0.9); transition: transform 0.3s ease;
 }
 
-.lightbox.active .lightbox-content {
-    transform: scale(1);
-}
+.lightbox.active .lightbox-content { transform: scale(1); }
 
 .lightbox-close {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    color: var(--white);
-    font-size: 3rem;
-    cursor: pointer;
-    line-height: 1;
-    transition: color 0.3s;
-    z-index: 3001;
-}
-
-.lightbox-close:hover {
-    color: var(--gold);
+    position: absolute; top: 20px; right: 30px;
+    color: var(--white); font-size: 3rem;
+    cursor: pointer; line-height: 1; z-index: 3001;
 }
