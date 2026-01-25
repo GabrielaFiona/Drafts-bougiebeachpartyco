@@ -36,14 +36,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- 3. Mobile Dropdown Toggle ---
-    // This allows the "Explore" text to open the menu on mobile instead of jumping to page immediately
     const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
     
     dropdownToggles.forEach(dt => {
         dt.addEventListener('click', (e) => {
-            // Only trigger this logic on mobile (when nav is absolute/fixed)
             if (window.getComputedStyle(toggle).display !== 'none') {
-                e.preventDefault(); // Stop link from going to page
+                e.preventDefault(); 
                 const parent = dt.parentElement;
                 parent.classList.toggle('open');
             }
@@ -53,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 4. Smooth Scroll for Anchor Links ---
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            // Only prevent default if it's purely an anchor on the CURRENT page
             const href = this.getAttribute('href');
             if(href.length > 1 && href.startsWith('#')) {
                 e.preventDefault();
@@ -74,12 +71,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- 6. RENTAL INQUIRY TOGGLE (NEW) ---
+    // --- 6. RENTAL INQUIRY TOGGLE ---
     const inquiryBtns = document.querySelectorAll('.inquiry-toggle');
     
     inquiryBtns.forEach(btn => {
         btn.addEventListener('click', function() {
-            // Find the form container relative to the button clicked
             const parent = this.closest('.zigzag-content');
             const form = parent.querySelector('.inquiry-form-wrap');
             
@@ -95,14 +91,30 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 7. GALLERY LIGHTBOX (UPDATED) ---
+    // --- 7. GALLERY LOGIC (SCROLL & LIGHTBOX) ---
+    
+    // Part A: Gallery Scroll Buttons
+    const galleryStrip = document.getElementById('gallery-strip');
+    const btnPrev = document.getElementById('gal-prev');
+    const btnNext = document.getElementById('gal-next');
+
+    if (galleryStrip && btnPrev && btnNext) {
+        btnNext.addEventListener('click', () => {
+            galleryStrip.scrollBy({ left: 300, behavior: 'smooth' });
+        });
+
+        btnPrev.addEventListener('click', () => {
+            galleryStrip.scrollBy({ left: -300, behavior: 'smooth' });
+        });
+    }
+
+    // Part B: Lightbox
     const galleryItems = document.querySelectorAll('.gallery-item img');
     const lightbox = document.getElementById('gallery-lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const closeBtn = document.getElementById('lightbox-close');
 
     if(lightbox) {
-        // Open Lightbox
         galleryItems.forEach(item => {
             item.addEventListener('click', () => {
                 lightboxImg.src = item.src;
@@ -110,22 +122,19 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Close functions
         const closeLightbox = () => {
             lightbox.classList.remove('active');
-            setTimeout(() => { lightboxImg.src = ''; }, 300); // Clear source after fade
+            setTimeout(() => { lightboxImg.src = ''; }, 300); 
         };
 
         if(closeBtn) {
             closeBtn.addEventListener('click', closeLightbox);
         }
 
-        // Close on background click
         lightbox.addEventListener('click', (e) => {
             if(e.target === lightbox) {
                 closeLightbox();
             }
         });
     }
-
 });
