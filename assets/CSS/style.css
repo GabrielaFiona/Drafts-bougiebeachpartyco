@@ -427,6 +427,34 @@ ul { list-style: none; }
   }
 }
 
+/* =========================================
+   Mobile Fix: Remove white image frame + ensure clean crop
+   Applies anywhere .zigzag-img is used (All Rentals + product sections)
+   ========================================= */
+@media (max-width: 900px) {
+  .zigzag-img {
+    background: transparent !important; /* removes the white box */
+    padding: 0 !important;
+    border: 0 !important;
+    overflow: hidden; /* keeps edges clean */
+    min-height: clamp(220px, 55vw, 340px); /* better mobile framing */
+  }
+
+  /* Optional but recommended: removes the inner white “frame” effect */
+  .zigzag-img::before {
+    display: none !important;
+  }
+
+  .zigzag-img img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;       /* fills frame (no white gaps) */
+    object-position: center; /* keeps subject centered */
+  }
+}
+
+
 /* --- 8. FOOTER (Fixed Shaking) --- */
 .bbp-footer {
   background: var(--green);
